@@ -27,7 +27,6 @@ public class DataEncryptionService {
 
         SecretKey originalKey = reclaimSecretKey();
         byte[] encryptedString = encrypter.encryptString("Test String", originalKey);
-        System.out.println("encrypted key ^^^^^^"+ encryptedString);
         textBox.setText(new String(encryptedString, "UTF-8"));
 
         byte[] decrypted_bytes = encrypter.decryptString(encryptedString, originalKey);
@@ -36,15 +35,12 @@ public class DataEncryptionService {
 
     private SecretKey reclaimSecretKey() {
         SharedPreferences sharedPref = context.getSharedPreferences(Constants.PREF_FILE, Context.MODE_PRIVATE);
-        System.out.println("in reclaim**********");
         String keyFromSharedPref = sharedPref.getString((Constants.KEY), "String");
-        System.out.println("&&&&&&&& -->>" + keyFromSharedPref);
         byte[] encodedKey     = Base64.decode(keyFromSharedPref, Base64.DEFAULT);
         return new SecretKeySpec(encodedKey, 0, encodedKey.length, "DES");
     }
 
     private void generateSecretKey() {
-        System.out.println("In here -> generate");
         KeyGenerator kgen;
         key = null;
         try {
