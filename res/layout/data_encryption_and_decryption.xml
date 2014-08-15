@@ -5,7 +5,6 @@
                 android:background="@color/bkground"
                 android:layout_centerVertical="true"
                 android:orientation="vertical">
-
   <Button
           android:id="@+id/startButton"
           android:layout_width="350dip"
